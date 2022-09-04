@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red34\green79\blue188;\red204\green203\blue60;\red88\green229\blue64;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c13206\c30848\c73913;\cssrgb\c83612\c82453\c29972;\cssrgb\c39489\c89858\c31572;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12080\viewh8960\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 MONGO DB COMMANDS\
+\
+\
+RESTART SERVER\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf1 \cb2 \CocoaLigature0 brew services restart mongodb/brew/mongodb-community
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+PATH\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf1 \cb2 \CocoaLigature0 /usr/local/Cellar/mongodb-community/6.0.0\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 SHOW DATABASES;\
+List all the databases in mongoldb\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf1 \cb2 \CocoaLigature0 use training;\
+show collections;
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+CREATE NEW DATABASES or find existing one\
+When you enter \'91USE NAMEOFDATABASE\'92; it creates a new database if it does not exist or goes to the existing one.\
+\
+Unlike in SQL, you don\'92t need to create a collection explicitly. All you do is insert a row/field and a collection is created. For example,\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf1 \cb2 \CocoaLigature0 db.emp.insert(\{\cf3 \cb2 name\cf1 \cb2 :\cf4 \cb2 "John"\cf1 \cb2 \}\
+show collections;\
+\
+Select * query has equivalent of db.emp.find();\
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 MORE COMMANDS\
+\
+db.emp.find();\
+db.emp.find(\{age:\'9424\'94\});\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 db.student.insert(\{roleNum: \'931\'94, name:\'94Kingsley\'94, age:\'9421\'94\});\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+}

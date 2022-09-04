@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title> </title>
+    <script>
+      function handle_submit() {
+        console.log(document.getElementById("username").value);
+        console.log(document.getElementById("password").value);
+        return true;
+      }
+    </script>
+  </head>
+
+  <body>
+    <form onsubmit=" event.preventDefault(); return handle_submit();">
+      <label
+        >Enter Username:
+        <input text="text" id="username" />
+      </label>
+
+      <label
+        >Enter Password:
+        <input type="password" id="password" />
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

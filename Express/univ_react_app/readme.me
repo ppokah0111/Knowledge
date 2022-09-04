@@ -1,0 +1,125 @@
+What is Reactjs?
+React is a component-based library that breaks down the user interface into smaller, reusable components. In some circumstances, those components will need to communicate (give data to one another), and the best method to do so is to use props.
+
+What is State in ReactJS?
+The state is a built-in React object that holds data or information about the component. The state of a component can change depending upon the user actions on the components or with any system events.
+
+In this article will show you how to create a form with input fields, validate and use the state of the input, and submit it. For styling Form, Button, and UI, we'll utilise the react-bootstrap library.
+
+In the form will have 3 fields (Id, User Name, Role).
+All fields are required to fill.
+After submission will clear the form.
+
+      <header className="App-header">
+        
+        <Routes>
+          <Route path="/" element={<AddFormStudents />} />
+          <Route path="/AddFormStudents" element={<AddFormStudents />} />
+
+          <Route path="/AddFormStudents" element={<AddFormStudents />}>
+            <Route path="AddFormStudents" element={<AddFormStudents />} />
+            <Route path="UpdateFormStudents" element={<UpdateFormStudents />} />
+            <Route path="GetFormStudents" element={<GetFormStudents />} />
+            <Route path="DeleteFormStudents" element={<DeleteFormStudents />} />
+          </Route>
+
+          <Route path="/AddFormTeachers" element={<AddFormTeachers />}>
+            <Route path="AddFormTeachers" element={<AddFormTeachers />} />
+            <Route path="UpdateFormTeachers" element={<UpdateFormTeachers />} />
+            <Route path="GetFormTeachers" element={<GetFormTeachers />} />
+            <Route path="DeleteFormTeachers" element={<DeleteFormTeachers />} />
+          </Route>
+
+        </Routes>
+
+        <Link to="/AddFormStudents">Add Students</Link>
+        <Link to="/UpdateFormStudents">Update Students</Link>
+        <Link to="/GetFormStudents">Get Students</Link>
+        <Link to="/DeleteFormStudents">Delete Students</Link>
+
+        <Link to="/AddFormTeachers">Add Teachers</Link>
+        <Link to="/UpdateFormTeachers">Update Teachers</Link>
+        <Link to="/GetFormTeachers">Get Teachers</Link>
+        <Link to="/DeleteFormTeachers">Delete Teachers</Link>
+      </header>
+
+//////////////
+
+      <Routes>
+        <Route path="/" element={<AddFormStudents />} />
+        <Route path="/AddFormStudents" element={<AddFormStudents />} />
+        <Route path="UpdateFormStudents" element={<UpdateFormStudents />} />
+        <Route path="GetFormStudents" element={<GetFormStudents />} />
+        <Route path="DeleteFormStudents" element={<DeleteFormStudents />} />
+
+        <Route path="AddFormTeachers" element={<AddFormTeachers />} />
+        <Route path="UpdateFormTeachers" element={<UpdateFormTeachers />} />
+        <Route path="GetFormTeachers" element={<GetFormTeachers />} />
+        <Route path="DeleteFormTeachers" element={<DeleteFormTeachers />} />
+
+        
+      </Routes>
+
+      <hr />
+
+      <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={2}
+      >
+        <Link to="/AddFormStudents">Add Students</Link>
+        <Link to="/UpdateFormStudents">Update Students</Link>
+        <Link to="/GetFormStudents">Get Students</Link>
+        <Link to="/DeleteFormStudents">Delete Students</Link>
+
+        <Link to="/AddFormTeachers">Add Teachers</Link>
+        <Link to="/UpdateFormTeachers">Update Teachers</Link>
+        <Link to="/GetFormTeachers">Get Teachers</Link>
+        <Link to="/DeleteFormTeachers">Delete Teachers</Link>
+      </Stack>
+
+      <br />
+
+
+
+      ROLES
+
+      1. Admin
+        - do everything
+
+      2. Students
+        - view/GetCourses assigned to Students
+        - Get classes
+        - get marks
+        - Get marks after 
+
+      3. Teachers
+        - Add, update, delete, get marks
+        - Add, update, delete, get cuttoff
+
+
+             <div>
+        <h1>University Login Page</h1>
+      </div> <br />
+      <Form onSubmit={handle_loginAuth}>
+        <label>
+          Enter User  &nbsp; 
+          <Input ref={userRef} type="text" />
+        </label>
+        &nbsp; &nbsp;   &nbsp; &nbsp;  &nbsp; &nbsp;
+        <label>
+          Enter password  &nbsp; 
+          <Input ref={passwordRef} type="password" />
+        </label>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Enter Password &nbsp; </Form.Label>
+          <Form.Control  ref={passwordRef} type="password" placeholder="Password" />
+        </Form.Group>
+
+        <br /><br />
+        <Button variant="primary" type="submit"> Submit </Button>
+      </Form>
+
+      <h1>{JSON.stringify(response)}</h1>
+    </div>

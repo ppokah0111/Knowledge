@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title> </title>
+    <script>
+      function handle_change() {
+        let value = document.getElementById("username").value;
+        document.getElementById("modified_username").value = `u enter ${value}`;
+      }
+    </script>
+  </head>
+
+  <body>
+    <input text="text" id="username" onchange="handle_change()" />
+    <input text="text" id="modified_username" />
+  </body>
+</html>

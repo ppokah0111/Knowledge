@@ -1,0 +1,369 @@
+--- EXPRESS NOTES ----
+
+notes.txt
+
+Express is a server side tool, used to make server services.
+Express surports making rest services.
+Rest services mostly exposes data in the form of JSON.
+JSON stands for javascript object notation
+JSON is a means of transfering DATA Uusing KEY value Pair.
+EXAMPLE OF JSON {"name": "john", "age":19}
+Express is a framework which supports making web applications
+To create a node js project, we have to fire " npm init --y "
+This creates a Package.JSON
+In Package.JSON, we can store various dependencies.
+Downloading the express Dependencies, " npm i express "
+
+"node server.js" to run server
+
+server.js
+
+var express = require("express");
+var app = express();
+app.get("/", (request, response) => {
+  return response.send("Hello World");
+});
+
+app.listen(3000, () => console.log("server has started"));
+
+/*** "node server.js" to run server **/
+
+express server has different method mappings
+Example: GET, POST, PUT, DELETE .
+GET is used for fetching the data from the server.
+POST is used for inserting the Data into the server.
+PUT is used for updating the Data.
+DELETE is for deleting the data from the server.
+
+allmethods --- file
+server.js
+var express = require("express");
+var app = express();
+
+app.get("/", (request, response) => {
+  return response.send("Hello World from get");
+});
+
+app.get("/welcome", (request, response) => {
+    return response.send("welcome from the world of express");
+  });
+
+app.put("/", (request, response) => {
+  return response.send("Hello World from put");
+});
+
+app.post("/", (request, response) => {
+  return response.send("Hello World from post");
+});
+
+app.delete("/", (request, response) => {
+  return response.send("Hello World from delete");
+});
+
+
+app.listen(3000, () => console.log("server has started"));
+
+/*** "node server.js" to run server **/
+
+Express application generator
+-------------------------------------------
+Use the application generator tool, express-generator, to quickly create an application skeleton.
+
+You can run the application generator with the npx command (available in Node.js 8.2.0).
+
+$ npx express-generator
+
+
+COMMANDS for express in the terminal
+
+1. npm init --y
+2. npm i express
+3. create server.js
+4. node server.js
+
+NODEMON
+------------------------
+npm install -g nodemon
+
+
+5. nodemon server.js
+
+in a Browser, pass "http://localhost:3000/?name=Emmanuel"  you can pass any name.
+
+Parameter serves as input to the server.
+
+In the post request in express, the data comes in the form of body i.e., request-body
+to get that data in server.js, we would have to make use of body-parser
+
+Install body-parser
+---------------------------
+npm i body-parser 
+
+
+For Example code
+-------------------------
+var bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+
+For post request we will have to pass the data in the form of JSON.
+For doing that in POSTMAN, we have to select the Body and within the body,
+select JSON
+
+ROUTES
+
+routing is a feature in express which allows to create different files and 
+different mapping for different files
+
+
+Explanation for user.js
+---------------------
+we again 
+1. start server: nodemon server.js
+2. create and add to postman a POST with localhost:3000/user
+3. Goto body > raw > 
+    a. add say, {"id": 5, "name": "Emmanuel G."}
+    b. click send
+    c. check browser with http://localhost:3000/user/
+4. Now we also create in postman a new tab called with PUT
+    a. we had to url, http://localhost:3000/user/
+    b. Got to the body > raw > json
+    c. Add this to update the index at 5,  {"id": 5, "name": "Jazzy"}  and click send
+    d. check browser, http://localhost:3000/user/
+You should see the update.
+
+
+TO CREATE ANOTHER FILE called department.js
+--------------------------------------------------------------------
+1. Goto server.js and add 
+	var dept = require("./department")
+	app.use("/department", dept)    //if url has department, it will go to department.js
+2. create a file in your userapi called department.js
+3. copy the entire code in user.js into department.js and replace userdata with deptdata in the department.js file
+4. goto postman and create a POST as explained before and check in browser with http://localhost:3000/department
+5. similarly, create a DELETE in postman as explained earlier and check in browser with http://localhost:3000/department
+6. similarly, create a PUT in postman as explained earlier and check in browser with http://localhost:3000/department 
+Note that PUT is for updating existing json record
+
+Express and MySQL
+--------------
+npm init --y 
+npm i express
+npm install mysql2
+
+
+HOSPITAL DATABASE
+--------------
+- patient
+- patient history
+- patient treatment
+- Doctors
+
+Database has 4 types of relationships
+--------------
+1. Many-to-Many  
+2. Many-to-One or One-to-Many
+3. One-to-One
+
+Example 
+--------------
+Patient has many Doctors and Doctor can also have many patients.
+SO, we would have extra tables in Many-to-Many. It would make use of the primary key of both the related tables.
+
+In Many-to-One or One-to-Many, the relationship goes on the many side. For example,
+One patient can have many history. Therefore the primary key of the patient will before
+stored in the patient history.
+
+In One-to-One, relationships can be stored in any table. For example, one patient will be a citizen of one country.
+
+Steps
+
+1. create database hospital;
+2. use hospital;
+3. Create table patient(id int not null, name text, age int, phone int, primary key(id));
+4. Create table doctor(id int not null, name text, specialty text, primary key(id));
+5. Create table patient_history(id int not null, patient_id int, illness text, from_date date, to_date date, doctor_id int, status int, primary key (id), 
+   foreign key (patient_id) references patient (id), 
+   foreign key (doctor_id) references doctor (id) );
+
+Note: patient and doctor tables are the independent tables. WHereas patient_history table is the dependent table and as such has the 
+foreign keys references of the other independent tables like patient and doctor.
+
+6. create table patient_treatment(id int not null, patient_id int, doctor_id int, treatment text, treatment_date date, primary key (id), 
+   foreign key (patient_id) references patient (id), 
+   foreign key (doctor_id) references doctor (id) );
+
+7.
+   //sql = "insert into department(id,name,size) values ?";
+
+   - insert into patient(id, name, age, phone) values (1, 'lionel messi', 28,  23435354);
+   - insert into patient(id, name, age, phone) values (2, 'neymar brazil', 26, 23434893);
+
+   - insert into doctor(id, name, specialty) values (1, 'Dr Kamal Kadri', 'cardiotherapic surgeon' );
+   - insert into doctor(id, name, specialty) values (2, 'Dr Angel Campus', 'brain surgeon' );
+
+   - insert into patient_history(id, patient_id, illness , from_date , to_date , doctor_id , status ) values (1, 1, 'heart pain', '2021-01-23', '2022-02-14', 1, 3);
+   - insert into patient_history(id, patient_id, illness , from_date , to_date , doctor_id , status ) values (2, 1, 'neck injury', '2022-03-19', '2022-04-02', 2, 1);
+   - insert into patient_history(id, patient_id, illness , from_date , to_date , doctor_id , status ) values (3, 2, 'stomach ulcer', '2021-11-04', '2021-12-25', 2, 5);
+   - insert into patient_history(id, patient_id, illness , from_date , to_date , doctor_id , status ) values (4, 3, 'skin achne and pimples', '2022-04-18', '2022-06-25', 7, 4);
+
+   - insert into patient_treatment(id , patient_id , doctor_id , treatment , treatment_date ) values (1, 1, 2, 'recovery stages', '2021-01-25' );
+   - insert into patient_treatment(id , patient_id , doctor_id , treatment , treatment_date) values (2, 2, 1, 'early stages to see specilist', '2021-11-07' );
+   - insert into patient_treatment(id , patient_id , doctor_id , treatment , treatment_date) values (3, 1, 1, 'require further diagnosis', '2022-03-22' );
+
+  //to alter a table's column name
+  alter table patient_treatment change treatment_date  treatment_start_date date;
+
+// mysql COMMANDS
+ 
+ show databases;
+ show tables;
+ describe doctor;
+ describe patient;
+ describe patient_history;
+ describe patient_treatment;
+ select * from patient; // to see content of patient
+
+
+CORS - Cross Origin Browser request
+------------------------------------------
+
+Assume UI is in https://someipaddress:3000/ and our express service https://someipaddress:8000/
+The browser will stop request from going from UI to express service. From one domain you cannot call the other domain
+until the other dmain explicitly allows it. This is known as CORS
+
+To allow a react application to communicate with an express server. A cors has to be installed and added to the server.
+For example, our testCORS react application wants to communicate with our express application called hospital.
+Steps
+1. On the express terminal, npm install cors
+2. in the express server.js add the following below
+     a. var cors = require("cors");
+     b. app.use(cors());
+3. the restart the express server
+4. run your testCORS react application on the browser and also check on postman
+5. On postman, in the header section below, under the KEY/VALUE pairs, you will find "Access-Control-Allow-Origin" and the 
+corresponding value to be by default '*'. * to mean allow everyone to connect. To control this and restrict connections to a single 
+request, one can replace the '*' with http://theipaddress:port/ and in this case it was http://localhost:3001/
+
+MAPPING 
+----------------
+DoctorTable, PatientTable, TreatmentTable, HistoryTable
+DoctorFetchById, PatientFetchById, TreatmentFetchById, HistoryFetchById
+
+CRUDE: 
+------------------------------
+AddDoctorForm, AddPatientForm, AddHistoryForm, AddTreatmentForm
+DeleteDoctor, DeletePatient, DeleteHistory, DeleteTreatment
+InsertDoctor, InsertPatient, InsertHistory, InsertTreatment
+UpdateDoctor, UpdatePatient, UpdateHistory, UpdateTreatment
+
+GIT COMMANDS
+-----------------------
+ git init
+ git add --all
+ git commit -m "commmit"
+ git remote add fullstack https://github.com/ppokah0111/fullStack.git
+ git push --set-upstream fullstack master
+
+
+To get login token in place of password
+1. Goto Settings
+2. Developer Settings
+3. Personal Access Token 
+4. Generate new Token and use as password
+5. Remember to delete toke after use
+
+
+HOSPITAL MONGO
+
+npm init --y
+npm install express
+npm install mongodb
+npm install body-Parser 
+npm install cors
+
+
+DESIGN A UNIVERSITY DATABASE - COMPLETE MERN APPLICATION
+-------------------------------------------
+
+mkdir university
+cd university
+
+npm init --y
+npm install express
+npm install mongodb
+npm install body-Parser 
+npm install cors
+
+create the server.js
+create the queryhelper.js
+
+nodemon server.js
+
+Collections
+
+1. Students [name, age, national_id, student_id, phone, gender, address, level, semester]
+{"name":"Barack Obama", "age": "55",  "national_id":"5475949343", "student_id":"23543", 
+"phone":"+0132434","gender": "male", "address": "washington, us", "level":"1", "semester":"1"}
+
+2. student_teachers [student_id, staff_id, course_id, class_id]
+
+  {"student_id":"23543", "teachers_id":"343859", "course_id":"API344", "class_id":"3435345"}
+    /* insert into student_teachers("student_id", "teachers_id", "course_id", "class_id") 
+    values (23543, '343859', 'API344', '3435345' ); */
+    //db.student_teachers.insert({"student_id":"23543", "teachers_id":"343859", "course_id":"API344", "class_id":"3435345"});
+
+  {"student_id":"3523", "teachers_id":"958204", "course_id":"GEH823", "class_id":"25436"}
+    /* insert into student_teachers("student_id", "teachers_id", "course_id", "class_id") 
+    values ('3523', '958204', 'GEH823', '25436' ); */
+    db.student_teachers.insert({"student_id":"3523", "teachers_id":"958204", "course_id":"GEH823", "class_id":"25436"});
+
+3. teachers [name, age, national_id, staff_id, phone, gender, address, tax, course_id]
+{"name":"Barack Obama", "age": "55",  "national_id":"5475949343", "staff_id":"343859", 
+"phone":"+0132434","gender": "male", "address": "washington, us", "tax":"34354", "course_id":"csc101"}
+
+4. Courses  [course_id, level, course_duration, semester, start_date]
+{"course_id":"csc101", "level":"1", "course_duration":"2 semester", "start_date":"2022-02-03"}
+
+4. Exams    [exam_id, exam_duration, exam_type, exam_date, exam_time, score, course_id]
+{"exam_id":"001", "exam_duration":"2h30", "exam_type":"multiple choice questions", 
+"exam_date":"2022-05-19", "exam_time":"08h00", "score": "90%", "course_id":"csc101"}
+
+5. Assign [assign_id, assign_type, course_id, assign_start_date, mark, assign_deadline]
+{"assign_id":"1", "assign_type":"research", "course_id":"csc101", "assign_start_date":"2022-03-01", 
+"mark":"95%", "assign_deadline":"2022-03-11"}
+
+6. student_assign [student_id, assign_id, course_id, mark, cutoff_id]
+db.student_assigns.insert({"student_id":"3523", "assign_id":"002" , "course_id":"API344", "mark":"75%", "cutoff_id":"73" });
+db.student_assigns.insert({"student_id":"3523", "assign_id":"003", "course_id":"GEH823", "mark":"98%", "cutoff_id":"3243"  });
+db.student_assigns.insert({"student_id":"23543", "assign_id":"002", "course_id":"GEH823", "mark":"85%", "cutoff_id":"3243"  });
+
+7. student_exam [student_id, exam_id, course_id,  score, cutoff_id]
+db.student_exams.insert({"student_id":"3523", "exam_id":"23453", "course_id":"API344","score":"89", "cutoff_id":"3243"});
+db.student_exams.insert({"student_id":"3523", "exam_id":"001", "course_id":"GEH823", "score":"45", "cutoff_id":"65"});
+db.student_exams.insert({"student_id":"23543", "exam_id":"003", "course_id":"GEH823", "score":"90", "cutoff_id":"73"});
+db.student_exams.update({_id: ObjectId("630b2f86a51094c30d103ea7")}, {$set: {"exam_id":"001","score":"45%"}})
+
+8. cutoff [course_id, assign_id, exam_id, _percentage, cutoff_id]
+{"course_id":"csc101", "assign_id":"1", "exam_id":"001", "_percentage":"20%", "cutoff_id":"01"}
+
+9. Marks [student_id, staff_id, course_id, score, mark, cutoff_id]
+{"student_id":"23543", "staff_id":"343859", "course_id":"csc101", "score":"95%", "cutoff_id":"01"}
+db.marks.updateMany({},{$set:{"mark":"88%"}}, false, true);
+
+10. Classes [course_id, staff_id, class_start_time, class_start_date, class_duration, class_mode, class_address, class_id] 
+{"course_id":"csc101", "staff_id":"343859", "class_start_time":"08h00", "class_start_date":"2022-02-10", 
+"class_duration":"01h15", "class_mode":"online", "class_address":"https://knowledgehut/csc001", "class_id":"csc001"}
+- each with different number of students
+ 
+
+UNIVERSITY - REACT section
+------------------------------
+
+It will have four components 
+1. Adding
+2. Getting
+3. Updating
+4. Deleting

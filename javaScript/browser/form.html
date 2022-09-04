@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Examples</title>
+
+    <script>
+        function checkform() {
+            let u = document.getElementById("username").value;
+            let p = document.getElementById("password").value;
+
+            if (u.length > 0) {} else {
+                alert("username is not filled properly");
+                return false;
+            }
+
+            if (p.length > 0) {} else {
+                alert("password is not filled properly");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="return checkform()">
+
+        <label for="username"> Enter your username: </label>
+        <input type="text" id="username" />
+        <br />
+
+        <!--Masked type using password-->
+        <label for="password">Enter your password: </label>
+        <input type="password" id="password" />
+        <br />
+
+        <button type="submit">Login</button>
+        <br />
+
+        <button type="reset">Reset</button>
+        <br />
+    </form>
+</body>
+
+</html>

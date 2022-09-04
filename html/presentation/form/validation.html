@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>This is the Validation file</title>
+  </head>
+
+  <body>
+    <form action="">
+      <label>
+        Enter your name:
+        <input type="text" name="name" required maxlength="4" />
+      </label>
+
+      <br />
+      <label>
+        Enter your Age: &nbsp;
+        <input type="number" name="age" required min="1" max="100" />
+      </label>
+
+      <br />
+      <label>
+        Enter your Email:
+        <input type="email" name="email" />
+      </label>
+
+      <br />
+
+      <label>
+        Enter your DOB:
+        <input type="date" name="date" />
+      </label>
+
+      <br />
+
+      <label>
+        Click your favorite movies:
+        <br />
+        <input type="checkbox" name="movie1" value="rambo" />
+        Rambo <br />
+
+        <input type="checkbox" name="movie2" value="titanic" />
+        Titanic <br />
+
+        <input type="checkbox" name="movie3" value="commander" />
+        Commander <br />
+      </label>
+      <br />
+
+      <label>
+        Select your gender:
+        <br />
+        <input type="radio" name="gender" value="male" />
+        Male <br />
+
+        <input type="radio" name="gender" value="female" />
+        Female <br />
+      </label>
+      <br />
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

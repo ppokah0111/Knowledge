@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More JQUERY Selector</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                $("p:first").hide();
+                $("p:last").hide();
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <p class="p0">Paragraph one</p>
+    <p class="p1">Paragraph zero</p>
+    <p class="p2">Paragraph two</p>
+    <p class="p3">Paragraph three</p>
+    <p class="p4">Paragraph four</p>
+    <p class="p5">Paragraph five</p>
+    <p class="p6">Paragraph six</p>
+    <p class="p7">Paragraph seven</p>
+    <p class="p8">Paragraph eight</p>
+    <p class="p9">Paragraph nine</p>
+
+    <button>Click</button>
+
+</body>
+
+</html>

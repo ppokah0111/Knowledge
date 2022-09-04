@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title> </title>
+    <script>
+      let i = 0;
+      let colors = ["red", "green", "blue", "yellow"];
+      /* handle click*/
+      function handle_click() {
+        //document.write("<b>Button was clicked!</b>")
+        //document.getElementById("sample").innerHTML = "Button was clicked!" + (new Date())
+        document.getElementById("sample").style.color = colors[i++];
+        // i++
+        if (i > 3) {
+          i = 0;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="handle_click()">Perform</button>
+    <!-- onclick is a predefined function associate with this tag-->
+    <p id="sample">Some text</p>
+  </body>
+</html>

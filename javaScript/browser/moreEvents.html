@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title> </title>
+    <script>
+      /* handle click*/
+      function handle_click() {
+        //document.write("<b>Button was clicked!</b>")
+        document.getElementById("sample").outerHTML =
+          "Button was clicked on " + new Date();
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="handle_click()">Perform</button>
+    <!-- onclick is a predefined function associate with this tag-->
+    <p id="sample"></p>
+  </body>
+</html>

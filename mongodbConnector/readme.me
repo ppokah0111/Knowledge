@@ -1,0 +1,608 @@
+MONGO DB COMMANDS
+
+
+RESTART SERVER
+brew services restart mongodb/brew/mongodb-community
+
+PATH
+/usr/local/Cellar/mongodb-community/6.0.0
+
+#All you need to do is open the Terminal and run this command:
+mongosh
+
+##SHOW DATABASES;
+#List all the databases in mongoldb
+show databases;
+
+##CREATE NEW DATABASES or find existing one
+#When you enter ‘USE NAMEOFDATABASE’; it creates a new database if it does not exist 
+or goes to the existing one.
+#go to one database called training
+use training;
+
+#show tables/collections in training
+show collections;
+
+#Unlike in SQL, you don’t need to create a collection explicitly. All you do is insert a row/field and a collection is created. For example,
+
+db.emp.insert({name:"John"}
+show collections;
+
+Select * query has equivalent of db.emp.find();
+db.emp.insert({name:"michael",age:"24", specialty:"Manager"}) ;
+db.emp.find();
+
+[
+  { _id: ObjectId("62edf47c0c8c76b6d4078d46"), name: 'John' },
+  {
+    _id: ObjectId("62edf55b0c8c76b6d4078d47"),
+    name: 'michael',
+    age: '24',
+    specialty: 'Manager'
+  }
+]
+
+###MORE COMMANDS
+
+db.emp.find();
+db.emp.find({age:”24”});
+
+db.student.insert({roleNum: “1”, name:”Kingsley”, age:”21”});
+db.student.insert({roleNum: “1”, name:”Kingsley”, age:”21”});
+db.student.insert({roleNum:"1",name:"Graham Norton", age:"27"});
+db.student.insert({roleNum:"1",name:"Kingsley Shore", age:"21"});
+db.student.insert({roleNum:"2",name:"McNamara Isaac", age:"23"});
+db.student.insert({roleNum:"3",name:"Kevin Costner", age:"35"});
+
+db.student.find();
+
+[
+  {
+    _id: ObjectId("62edf7750c8c76b6d4078d48"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf7a00c8c76b6d4078d49"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf8180c8c76b6d4078d4a"),
+    roleNum: '1',
+    name: 'Graham Norton',
+    age: '27'
+  },
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  }
+]
+
+
+db.student.remove({_id:ObjectId("62edf7750c8c76b6d4078d48")});
+db.student.find();
+[
+  {
+    _id: ObjectId("62edf7a00c8c76b6d4078d49"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf8180c8c76b6d4078d4a"),
+    roleNum: '1',
+    name: 'Graham Norton',
+    age: '27'
+  },
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  }
+]
+
+
+db.student.update({_id: ObjectId("62edf8180c8c76b6d4078d4a")},{$set:{roleNum:'4'}});
+db.student.find();
+[
+  {
+    _id: ObjectId("62edf7a00c8c76b6d4078d49"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf8180c8c76b6d4078d4a"),
+    roleNum: '4',
+    name: 'Graham Norton',
+    age: '27'
+  },
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  }
+]
+### INSERT MANY COLLECTIONS
+ 
+db.student.insertMany([{
+    roleNum: '5',
+    name: 'Volmink Horst',
+    age: '31'
+  },
+  {
+    roleNum: '6',
+    name: 'Emily Floyd',
+    age: '43'
+  },
+  {
+    roleNum: '7',
+    name: 'Wright Jones',
+    age: '19'
+  }]);
+
+### CREATING NESTED OBJECTS
+
+db.student.insert({
+	regNo: "3014",
+	name: "Test Student",
+	course: {
+		courseName: "MCA",
+		duration: "3 Years"
+	},
+	address: {
+		city: "Bangalore",
+		state: "KA",
+		country: "India"
+	}
+});
+
+db.student.update({_id: ObjectId("62edfd100c8c76b6d4078d50")},{$set:{name:'Jonny Angels'}});
+db.student.update({_id: ObjectId("62edfd100c8c76b6d4078d50")},{$set:{"course.courseName":'Computer Science'}});
+
+d.student.find();
+
+[
+  {
+    _id: ObjectId("62edf7a00c8c76b6d4078d49"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf8180c8c76b6d4078d4a"),
+    roleNum: '4',
+    name: 'Graham Norton',
+    age: '27'
+  },
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4d"),
+    roleNum: '5',
+    name: 'Volmink Horst',
+    age: '31'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4e"),
+    roleNum: '6',
+    name: 'Emily Floyd',
+    age: '43'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4f"),
+    roleNum: '7',
+    name: 'Wright Jones',
+    age: '19'
+  },
+  {
+    _id: ObjectId("62edfd100c8c76b6d4078d50"),
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+#### OTHER COMMANDS
+
+db.student.updateMany([{},{}]);
+db.student.deleteMany([{},{}]);
+db.student.deleteOne({});
+
+#TO AVOID some fields after query.
+For instance, i want only the name fields.
+
+db.student.find({},{_id:0});
+
+[
+  { roleNum: '1', name: 'Kingsley Shore', age: '21' },
+  { roleNum: '4', name: 'Graham Norton', age: '27' },
+  { roleNum: '2', name: 'McNamara Isaac', age: '23' },
+  { roleNum: '3', name: 'Kevin Costner', age: '35' },
+  { roleNum: '5', name: 'Volmink Horst', age: '31' },
+  { roleNum: '6', name: 'Emily Floyd', age: '43' },
+  { roleNum: '7', name: 'Wright Jones', age: '19' },
+  {
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+#ANother exammple 
+db.student.find({},{_id:0, age:0});
+[
+  { roleNum: '1', name: 'Kingsley Shore' },
+  { roleNum: '4', name: 'Graham Norton' },
+  { roleNum: '2', name: 'McNamara Isaac' },
+  { roleNum: '3', name: 'Kevin Costner' },
+  { roleNum: '5', name: 'Volmink Horst' },
+  { roleNum: '6', name: 'Emily Floyd' },
+  { roleNum: '7', name: 'Wright Jones' },
+  {
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+
+##limit the number of records/documents
+db.student.find({}).limit(5);
+
+[
+  {
+    _id: ObjectId("62edf7a00c8c76b6d4078d49"),
+    roleNum: '1',
+    name: 'Kingsley Shore',
+    age: '21'
+  },
+  {
+    _id: ObjectId("62edf8180c8c76b6d4078d4a"),
+    roleNum: '4',
+    name: 'Graham Norton',
+    age: '27'
+  },
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4d"),
+    roleNum: '5',
+    name: 'Volmink Horst',
+    age: '31'
+  }
+]
+
+###Also we could do
+
+db.student.find({},{_id:0, age:0}).limit(3);
+[
+  { roleNum: '1', name: 'Kingsley Shore' },
+  { roleNum: '4', name: 'Graham Norton' },
+  { roleNum: '2', name: 'McNamara Isaac' }
+]
+
+### to skip the first two records
+db.student.find({}).skip(2);
+[
+  {
+    _id: ObjectId("62edf85b0c8c76b6d4078d4b"),
+    roleNum: '2',
+    name: 'McNamara Isaac',
+    age: '23'
+  },
+  {
+    _id: ObjectId("62edf8750c8c76b6d4078d4c"),
+    roleNum: '3',
+    name: 'Kevin Costner',
+    age: '35'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4d"),
+    roleNum: '5',
+    name: 'Volmink Horst',
+    age: '31'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4e"),
+    roleNum: '6',
+    name: 'Emily Floyd',
+    age: '43'
+  },
+  {
+    _id: ObjectId("62edfba30c8c76b6d4078d4f"),
+    roleNum: '7',
+    name: 'Wright Jones',
+    age: '19'
+  },
+  {
+    _id: ObjectId("62edfd100c8c76b6d4078d50"),
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+### TO SORT in descending order of age
+
+db.student.find({},{_id:0, age:0}).sort({"age":-1});
+[
+  { roleNum: '6', name: 'Emily Floyd' },
+  { roleNum: '3', name: 'Kevin Costner' },
+  { roleNum: '5', name: 'Volmink Horst' },
+  { roleNum: '4', name: 'Graham Norton' },
+  { roleNum: '2', name: 'McNamara Isaac' },
+  { roleNum: '1', name: 'Kingsley Shore' },
+  { roleNum: '7', name: 'Wright Jones' },
+  {
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+
+db.student.find({},{_id:0}).sort({"age":-1});
+[
+  { roleNum: '6', name: 'Emily Floyd', age: '43' },
+  { roleNum: '3', name: 'Kevin Costner', age: '35' },
+  { roleNum: '5', name: 'Volmink Horst', age: '31' },
+  { roleNum: '4', name: 'Graham Norton', age: '27' },
+  { roleNum: '2', name: 'McNamara Isaac', age: '23' },
+  { roleNum: '1', name: 'Kingsley Shore', age: '21' },
+  { roleNum: '7', name: 'Wright Jones', age: '19' },
+  {
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+### TO SORT in descending order roleNum
+db.student.find({},{_id:0}).sort({"roleNum":-1});
+[
+  { roleNum: '7', name: 'Wright Jones', age: '19' },
+  { roleNum: '6', name: 'Emily Floyd', age: '43' },
+  { roleNum: '5', name: 'Volmink Horst', age: '31' },
+  { roleNum: '4', name: 'Graham Norton', age: '27' },
+  { roleNum: '3', name: 'Kevin Costner', age: '35' },
+  { roleNum: '2', name: 'McNamara Isaac', age: '23' },
+  { roleNum: '1', name: 'Kingsley Shore', age: '21' },
+  {
+    regNo: '3014',
+    name: 'Jonny Angels',
+    course: { courseName: 'Computer Science', duration: '3 Years' },
+    address: { city: 'Bangalore', state: 'KA', country: 'India' }
+  }
+]
+
+### EXAMPLE
+
+db.university.insertMany([
+    {
+  country : 'Spain',
+  city : 'Salamanca',
+  name : 'USAL',
+  location : {
+    type : 'Point',
+    coordinates : [ -5.6722512,17, 40.9607792 ]
+  },
+  students : [
+    { year : 2014, number : 24774 },
+    { year : 2015, number : 23166 },
+    { year : 2016, number : 21913 },
+    { year : 2017, number : 21715 }
+  ]
+},
+{
+  country : 'Spain',
+  city : 'Salamanca',
+  name : 'UPSA',
+  location : {
+    type : 'Point',
+    coordinates : [ -5.6691191,17, 40.9631732 ]
+  },
+  students : [
+    { year : 2014, number : 4788 },
+    { year : 2015, number : 4821 },
+    { year : 2016, number : 6550 },
+    { year : 2017, number : 6125 }
+  ]
+}
+
+]);
+
+### INSERT COURSES
+
+db.courses.insertMany([
+{
+  university : 'USAL',
+  name : 'Computer Science',
+  level : 'Excellent'
+},
+{
+  university : 'USAL',
+  name : 'Electronics',
+  level : 'Intermediate'
+},
+{
+  university : 'USAL',
+  name : 'Communication',
+  level : 'Excellent'
+}
+]);
+
+#### AGGREGATE instead of FIND using $match
+db.university.aggregate([
+  { $match : { country : 'Spain', city : 'Salamanca' } }
+]).pretty()
+
+
+db.university.aggregate([
+...   { $match : { country : 'Spain', city : 'Salamanca' } }
+... ]).pretty();
+
+[
+  {
+    _id: ObjectId("62ee07950c8c76b6d4078d51"),
+    country: 'Spain',
+    city: 'Salamanca',
+    name: 'USAL',
+    location: { type: 'Point', coordinates: [ -5.6722512, 17, 40.9607792 ] },
+    students: [
+      { year: 2014, number: 24774 },
+      { year: 2015, number: 23166 },
+      { year: 2016, number: 21913 },
+      { year: 2017, number: 21715 }
+    ]
+  },
+  {
+    _id: ObjectId("62ee07950c8c76b6d4078d52"),
+    country: 'Spain',
+    city: 'Salamanca',
+    name: 'UPSA',
+    location: { type: 'Point', coordinates: [ -5.6691191, 17, 40.9631732 ] },
+    students: [
+      { year: 2014, number: 4788 },
+      { year: 2015, number: 4821 },
+      { year: 2016, number: 6550 },
+      { year: 2017, number: 6125 }
+    ]
+  }
+]
+
+### $match
+
+# $match is used to filter the collections based on the Parameter
+# Unlike Find, $match can only be used with aggregate function
+
+#### PROJECTION or PROJECT
+#Project is used to select only the requried columns in the case of aggregation
+
+db.university.aggregate([
+  { $project : { _id : 0, country : 1, city : 1, name : 1 } }
+]).pretty();
+
+
+Collections are tables
+documents are rows
+fields are columns
+
+### $GROUP in aggregate is used to groupby in particular functions
+
+#OCCURRENCES
+db.university.aggregate([
+  { $group : { _id : '$name', totaldocs : { $sum : 1 } } }
+]).pretty();
+
+#FOr each occurences of name, set sum as 1
+db.university.aggregate([
+  { $group : {_id : '$name', totaldocs : { $sum : 1 } } }
+]).pretty();
+
+
+
+### FOR FINDING OCCURENCES IN NESTED DATA you have to first UNWIND It
+
+db.university.aggregate([
+  { $match : { name : 'USAL' } },
+  { $unwind : '$students' }
+]);
+
+#to now create a new collection/table
+
+db.university.aggregate([
+  { $match : { name : 'USAL' } },
+  { $unwind : '$students' },
+  { $out : 'aggResults' }
+]);
+
+##sums the invidual documents based on year in nested students 
+db.university.aggregate([
+{ $unwind : '$students' },
+{ $group : {_id : '$students.year', totaldocs : { $sum : 1 } } }
+]).pretty();
+
+[
+  { _id: 2017, totaldocs: 2 },
+  { _id: 2014, totaldocs: 2 },
+  { _id: 2015, totaldocs: 2 },
+  { _id: 2016, totaldocs: 2 }
+]
+
+### sum the individual number fields in the nested students of each year and
+### provides the argument 
+db.university.aggregate([
+{ $unwind : '$students' },
+{ $group : {_id : '$students.year', totalnumber : { $sum : '$students.number' } } }
+]).pretty();
+
+[
+  { _id: 2017, totaldocs: 27840 },
+  { _id: 2015, totaldocs: 27987 },
+  { _id: 2014, totaldocs: 29562 },
+  { _id: 2016, totaldocs: 28463 }
+]
+
+
+mongodb Connector
+-------------------------------
+
+npm init -y
+create a new folder, mongodbConnector, to connect mongodb with express
+inside the folder
+npm install mongodb
+
+
+insertMany in mongodb takes array of OBJECTS.

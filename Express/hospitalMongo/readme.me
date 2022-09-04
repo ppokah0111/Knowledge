@@ -1,0 +1,9 @@
+DELETE Many
+---------------------
+The deleteMany doesn't require an array
+
+For getting by id, a special handling is required.
+----------------------
+  if(param._id){
+        param._id = new mongo.ObjectID(param._id);
+}

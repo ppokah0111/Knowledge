@@ -1,0 +1,59 @@
+
+https://www.mongodb.com/docs/database-tools/installation/installation-macos/
+
+brew install mongodb-database-tools
+
+download and unzip file https://github.com/huynhsamha/quick-mongo-atlas-datasets
+
+unzip the file and move the dump directory to a path where you can access it. 
+Like /Users/user/Documents/KnowledgeHut/dump/sample_mflix/
+
+
+DON'T USE THIS #mongoimport  -d training -c movies --file movies.json
+USE THIS #mongorestore -d db_name -c collection_name /path/file.bson
+
+mongorestore  -d training -c movies ./movies.bson
+mongorestore  -d training -c comments ./comments.bson
+mongorestore  -d training -c sessions ./sessions.bson
+mongorestore  -d training -c theaters ./theaters.bson
+mongorestore  -d training -c users ./users.bson
+
+
+##### STILL ON MONGODB COMMANDS - SECOND PART OF TODAY'S CLASS
+
+db.movies.find( { "title": "Titanic" } )
+
+#Also you can use filters
+db.movies.find( { countries: "Mexico", "imdb.rating": { $gte: 7 } } )
+#others are eq,ne,lte,gt,lt
+
+#Find all movies in 2010 and where awards.wins >= 5 or genres: "Drama"
+db.movies.find( {
+     year: 2010,
+     $or: [ { "awards.wins": { $gte: 5 } }, { genres: "Drama" } ]
+} )
+
+db.movies.find({writers:"Quentin Tarantino"});
+
+REQULAR EXPRESSIONS
+
+#Find all the movies which contains bilbo. This is same as like search in MySQL
+
+db.movies.find({fullplot:{$regex:"Bilbo"}});
+
+db.movies.find({$and:[{fullplot:{$regex:"Bilbo"}}, {fullplot:{$not:/Gandalf/}}]});
+
+db.movies.find({$or:[{fullplot:{$regex:"dwarves"}}, {fullplot:{$regex:"hobbit"}}]});
+
+
+ARRAY OPERATORS
+
+#check whether an element e.g., countries that is USA is present/not in an ARRAY
+
+#db.collections.find({"keyWithArray":{$elemMatch:{"$in":[null], "$exists":true}}});
+
+db.movies.find({"countries":{$elemMatch:{"$in":["USA"], "$exists":true}}});
+
+db.movies.find({"cast":{$elemMatch:{"$in":["Charles Chaplin"], "$exists":true}}});
+
+

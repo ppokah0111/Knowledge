@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title> </title>
+    <script>
+        function handle_change() {
+
+            let value = document.getElementById("username").value;
+
+            if ('speechSynthesis' in window) {
+                // Speech Synthesis supported 🎉
+            } else {
+                // Speech Synthesis Not Supported 😣
+                alert("Sorry, your browser doesn't support text to speech!");
+            }
+
+            let utterance = new window.SpeechSynthesisUtterance();
+
+            //utterance.text = "Facebook news feeds are full of garbage";
+
+            utterance.text = value
+
+            //Speak the phrase
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</head>
+
+<body>
+    <input text="text" id="username" onchange="handle_change()" />
+
+</body>
+
+</html>

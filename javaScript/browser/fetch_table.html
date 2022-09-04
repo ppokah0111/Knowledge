@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Table Document - Dynamically reading/writing</title>
+
+    <script>
+        function fetchTable() {
+            fetch("https://jsonplaceholder.typicode.com/todos")
+                .then((res) => res.json()) // received raw data is converted to json
+                .then((res) => {
+                    let table = document.createElement("table");
+                    table.style.border = "1px solid black";
+
+                    for (let i = 0; i < res.length; i++) {
+                        // getting the recieved data/array and looping through to print out as table
+                        let row = table.insertRow();
+
+                        for (let key in res[i]) {
+                            let cell = row.insertCell();
+                            cell.appendChild(document.createTextNode(res[i][key]));
+                        }
+                    }
+                    document.body.appendChild(table);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="fetchTable()">Fetch data event</button>
+</body>
+
+</html>

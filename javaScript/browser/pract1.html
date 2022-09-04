@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title> </title>
+    <script>
+      function handle_change() {
+        let value = document.getElementById("username").value
+
+        if ("speechSynthesis" in window) {
+          // Speech Synthesis supported 🎉
+        } else {
+          // Speech Synthesis Not Supported 😣
+          alert("Sorry, your browser doesn't support text to speech!");
+        }
+
+        let utterance = new window.SpeechSynthesisUtterance();
+
+        utterance.text = value + 
+          "Adeola Poroye, the Aliens from the parallel universes have arrived your planet earth and ready to do battle. Hahahaha!";
+        //utterance.text = value;
+
+        x = new Date();
+        x.setSeconds(x.getSeconds() + 5);
+        var t = new Date(x) - new Date();
+
+        setTimeout(function () {
+          //alert("Hello");
+          //Speak the phrase
+          window.speechSynthesis.speak(utterance);
+        }, t);
+      }
+    </script>
+  </head>
+
+  <body>
+    <input text="text" id="username" onchange="handle_change()" />
+  </body>
+</html>

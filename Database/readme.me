@@ -1,0 +1,79 @@
+Database is a collection of data. A relational database is a database in which data is arranged in 
+the form of rows and columns. 
+Rows is also known as Tuples. 
+Column is also known as Attribute. 
+The collection of rows and columns is known as Table. 
+
+Different types of Columns and Tables.
+--------------------------------
+1. primary key -  
+A primary key is a which can uniquely identify an instance. The primary key cannot be null and must be unique per row. 
+A primary key can also be composite. It means it can be a combination of keys or different columns. 
+
+2. Non primary key - Keys/columns other than primary key. 
+
+3. Non nullable keys/columns - These are columns, which cannot contain null values. 
+
+Datatypes of columns.
+----------------------------------
+1. VarChar - It stands for textual data.
+2. int - It stands for numerical data
+3. text -  It can store bigger textual data. 
+4. blob - it can store images.
+
+MySQL commands
+----------------------------------
+create database sample;
+use sample;
+create table emp(id int, name text, age int, primary key (id));
+select * from emp;
+
+insert into emp(id,name,age) values (1,'Bill Clinton', 60);
+
+insert into emp(id,name,age) values (2,'Bill Burton', 16), (3,'Royll George', 13);
+
+select * from emp where id=1;
+
+update emp set age=65 where id=1;
+
+delete from emp where id =3;
+
+CRUD OPERATIONS
+----------------------------------
+create, insert, update and delete are called CRUD operations.
+
+SELECT only names starting with 'm'
+----------------------------------
+select * from department where name like 'm%';
+
+node db1.js
+
+lsof -Pan -p PID -i
+
+
+//UPDATE user SET authentication_string=password('root1234'), plugin='mysql_native_password' WHERE user='root';
+
+//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root1234';
+
+ALTER Table department add size int;
+
+UPDATE  department SET size = 10;
+UPDATE  department SET size = 15 where id in (1,2,3,4,5);
+
+npm install mysql2  //Since mysql1 did not work in vscode
+
+GIT COMMANDS
+-----------------------
+ git init
+ git add --all
+ git commit -m "commmit"
+ git remote add fullstack https://github.com/ppokah0111/fullStack.git
+ git push --set-upstream fullstack master
+
+
+To get login token in place of password
+1. Goto Settings
+2. Developer Settings
+3. Personal Access Token 
+4. Generate new Token and use as password
+5. Remember to delete toke after use

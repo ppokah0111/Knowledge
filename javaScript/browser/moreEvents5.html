@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title> </title>
+    <script>
+        function handle_change() {
+            let e = document.getElementById("color");
+            let selectedColor = e.options[e.selectedIndex].value;
+
+            document.getElementById("sample").style.color = selectedColor;
+        }
+    </script>
+</head>
+
+<body onload="handle_change()">
+    <select name="color" id="color" onchange="handle_change()">
+      <option value="red" selected>Red</option>
+      <option value="blue">Blue</option>
+      <option value="yellow">Yellow</option>
+      <option value="green">Green</option>
+    </select>
+
+    <p id="sample">This is interest</p>
+</body>
+
+</html>

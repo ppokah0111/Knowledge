@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Table in Jquery</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("button").click(function () {
+          $.get(
+            "https://jsonplaceholder.typicode.com/todos",
+            function (data, status) {
+              var $table = $("<table/>");
+              for (var i = 0; i < data.length; i++) {
+                $table.append("<tr><td>" + data[i].userId + "</td></tr>");
+                $table.append("<tr><td>" + data[i].id + "</td></tr>");
+                $table.append("<tr><td>" + data[i].title + "</td></tr>");
+                $table.append("<tr><td>" + data[i].completed + "</td></tr>");
+              }
+              $("#sample").append($table);
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="sample"></div>
+
+    <button>Click</button>
+  </body>
+</html>
