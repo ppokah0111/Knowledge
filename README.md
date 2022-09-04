@@ -1,5 +1,5 @@
 # Knowledge
-Knowledge Huts work
+Knowledge works
 
 <h2>KEYWORDS:</h2>
 css, html, javascript, react, and more to come to include express, mongodb etc
